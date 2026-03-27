@@ -11,8 +11,8 @@ RUN pip install --no-cache-dir torch --index-url https://download.pytorch.org/wh
     pip install --no-cache-dir fastapi uvicorn transformers gunicorn
 
 COPY ./model_weight ./model_weight
-COPY main.py .
+COPY fast_api.py .
 
 EXPOSE 8000
 
-CMD ["gunicorn", "-w", "4", "-k", "uvicorn.workers.UvicornWorker", "fast_api:app", "--bind", "0.0.0.0:8000"]
+CMD ["gunicorn", "-w", "2", "-k", "uvicorn.workers.UvicornWorker", "fast_api:app", "--bind", "0.0.0.0:8000"]
